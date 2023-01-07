@@ -43,63 +43,9 @@
 		</article>
 
 		<!-- Post -->
-		<article class="box post post-excerpt">
-			<header>
-				<h2><a href="#">Grief and gratitude</a></h2>
-				<!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
-			</header>
-
-			<div class="info">
-				<span class="date"><span class="month">Dec<span>ember</span></span> <span class="day">7</span><span
-						class="year">, 2022</span></span>
-				<ul class="stats">
-					<li><a href="#" class="icon fa-comment">16</a></li>
-					<li><a href="#" class="icon fa-heart">32</a></li>
-					<!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
-									<li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
-				</ul>
-			</div>
-			<a href="#" class="image featured"><img src="assets/images/dec7-img1.jpg" alt="" /></a>
-			<p>
-				What is grief and the place of gratitude in grief? <br>
-				Looking at the bright colorful beauty of the backyard on this sunny autumn Sunday afternoon,<br>
-				Seeing him mowing the lawn, Hearing him shouting excitedly like a child " I did the yard
-				work<br>
-				nicely. Let's go out for a treat now,"<br>
-				Wondering what this home will be like for my family when it is my time to join him in
-				eternity,<br>
-				Imagining him walking through the front door as if he just came home from an out-of-country
-				mission<br>
-				trip, and the celebration of life was for someone else, not him, and<br>
-				Most of all, thank God for our life together and shared hopes in Christ.
-			</p>
-		</article>
-
-		<article class="box post post-excerpt">
-			<header>
-				<h2><a href="#">Close and Yet Far Apart</a></h2>
-				<!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
-			</header>
-
-			<div class="info">
-				<span class="date"><span class="month">Dec<span>ember</span></span> <span class="day">6</span><span
-						class="year">, 2022</span></span>
-				<ul class="stats">
-					<li><a href="#" class="icon fa-comment">16</a></li>
-					<li><a href="#" class="icon fa-heart">32</a></li>
-					<!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
-									<li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
-				</ul>
-			</div>
-			<a href="#" class="image featured"><img src="assets/images/dec6-img.jpg" alt="" /></a>
-			<p>
-				Close and yet far apart.<br>
-				Feeling relieved when releasing a gigantic backpack from our shoulders after lugging it around for a
-				while as we travel?<br>
-				We frequently hide our pain from those closest to us. It is hard to open up. However, unraveling our
-				pain with them is like what we do with the backpack mentioned above.
-			</p>
-		</article>
+		<%for(post of posts){%>
+		<%-include('partials/post', {post: post}) -%>
+		<%}%>
 
 		<!-- Pagination -->
 		<div class="pagination">

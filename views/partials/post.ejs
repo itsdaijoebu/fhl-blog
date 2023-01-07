@@ -7,18 +7,19 @@
     </header>
 
     <div class="info">
-        <span><%=post.date%></span>
-        <span class="date"><span class="month">Dec<span>ember</span></span> <span class="day">7</span><span
-                class="year">, 2022</span></span>
+		<%const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
+        <% const month = months[post.date.getMonth()]%>
+        <span class="date"><span class="month"><%=month.slice(0, 3)%><span><%=month.slice(3)%></span></span> <span class="day"><%=post.date.getDate()%></span><span
+                class="year">, <%=post.date.getFullYear()%></span></span>
         <ul class="stats">
-            <li><a href="#" class="icon fa-comment"><%=post.comments.length%></a></li>
-            <li><a href="#" class="icon fa-heart">32</a><%=post.likes%></li>
+            <!-- <li><a href="#" class="icon fa-comment"><%#post.comments.length%></a></li> -->
+            <li><a href="#" class="icon fa-heart"><%=post.likes%></a></li>
             <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
                         <li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
         </ul>
     </div>
     <a href="#" class="image featured"><img src=<%=post.images[0]%> alt="" /></a>
     <p>
-        <%=post.body%>
+        <pre><%=post.body%>
     </p>
 </article>

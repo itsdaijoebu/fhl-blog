@@ -10,7 +10,7 @@ module.exports = {
         console.log(req.file.path)
         const result = await cloudinary.uploader.upload(req.file.path, {
             folder: 'fhl-website',
-            resource_type: 'auto'
+            resource_type: 'auto',
         })
         console.log(result)
         const post = Post.create({

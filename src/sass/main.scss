@@ -1254,7 +1254,9 @@ ol {
       }
 
       header {
-        padding: 2.75em 0 0 0;
+        // padding: 2.75em 0 0 0;
+        // margin: 0 0 3em 0;
+        padding: 0 0 0 0;
         margin: 0 0 3em 0;
 
         > p {
@@ -1370,9 +1372,11 @@ ol {
       }
 
       header {
-        padding: 1.5em 0 0 0;
-        margin: 0 0 3em 0;
-
+        // padding: 1.5em 0 0 0;
+        // margin: 0 0 3em 0;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+        
         > p {
           font-size: 1.75em;
           line-height: 1.5em;

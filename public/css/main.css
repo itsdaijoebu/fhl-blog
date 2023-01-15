@@ -2059,7 +2059,7 @@ ol li {
     line-height: 1.25em;
   }
   .box.post header {
-    padding: 2.75em 0 0 0;
+    padding: 0 0 0 0;
     margin: 0 0 3em 0;
   }
   .box.post header > p {
@@ -2153,8 +2153,8 @@ ol li {
     line-height: 1.25em;
   }
   .box.post header {
-    padding: 1.5em 0 0 0;
-    margin: 0 0 3em 0;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
   }
   .box.post header > p {
     font-size: 1.75em;

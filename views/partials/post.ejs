@@ -1,0 +1,24 @@
+<!-- Variables: post => post.title, post.date, post.likes, post.comments, post.images, post.body -->
+
+<article class="box post post-excerpt">
+    <header>
+        <h2><a href="#"><%=post.title%></a></h2>
+        <!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
+    </header>
+
+    <div class="info">
+        <span><%=post.date%></span>
+        <span class="date"><span class="month">Dec<span>ember</span></span> <span class="day">7</span><span
+                class="year">, 2022</span></span>
+        <ul class="stats">
+            <li><a href="#" class="icon fa-comment"><%=post.comments.length%></a></li>
+            <li><a href="#" class="icon fa-heart">32</a><%=post.likes%></li>
+            <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
+                        <li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
+        </ul>
+    </div>
+    <a href="#" class="image featured"><img src=<%=post.images[0]%> alt="" /></a>
+    <p>
+        <%=post.body%>
+    </p>
+</article>

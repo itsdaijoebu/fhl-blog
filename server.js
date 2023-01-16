@@ -43,8 +43,6 @@ app.use(passport.session());
 
 app.use(flash())
 
-
-
 app.use("/", mainRoutes);
 app.use('/admin', (req, res, next) => {
   if(req.user && req.user.isAdmin) {

@@ -4,7 +4,10 @@ const homeController = require('../controllers/home.js');
 const authController = require('../controllers/auth.js');
 const auth = require('../middleware/auth.js');
 
-router.get('/', homeController.getIndex);
+const Post = require('../models/Post')
+const pagination = require('../middleware/pagination')
+
+router.get('/', pagination.pagination(Post), homeController.getIndex);
 router.get('/login', authController.getLogin);
 router.post('/login', authController.postLogin);
 router.get('/logout', authController.logout);

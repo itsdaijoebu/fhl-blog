@@ -29,7 +29,7 @@ module.exports = {
     },
     updateMongo: async(req, res) => {
         // const posts = await Post.find()
-        res.redirect('../')
+        res.redirect('/')
     }
 
     

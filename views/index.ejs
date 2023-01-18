@@ -68,7 +68,7 @@
 
 		<div class="pages">
 			<% const currPage = paginatedResults.page %>
-			<% for(let i = 1; i<=posts.length; i++) { %>
+			<% for(let i = 1; i<=paginatedResults.pageCount; i++) { %>
 			<a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
 				<% } %>
 		</div>

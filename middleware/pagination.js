@@ -9,6 +9,12 @@ module.exports = {
 
       const results = {};
 
+      const pageCount = Math.ceil(await model.countDocuments({})/limit) || 1;
+
+      if(page > pageCount) {
+        res.redirect('./')
+      }
+
       if (startIndex > 0) {
         results.previous = {
           page: Number(page) - 1,
@@ -31,6 +37,7 @@ module.exports = {
           .limit(limit)
           .skip(startIndex)
           .exec();
+        results.pageCount = pageCount
         res.paginatedResults = results;
         next();
       } catch (err) {

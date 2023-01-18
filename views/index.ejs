@@ -41,6 +41,8 @@
 					Musings on life, mental health, and the walk with Christ.
 				</p> -->
 		</article>
+		
+		<%-include('partials/pagination'), {paginatedResults: paginatedResults}-%>
 
 		<!-- Post -->
 		<%const posts = paginatedResults.results%>
@@ -61,28 +63,9 @@
 			</div>
 			<a href="#" class="button next">Next Page</a>
 		</div> -->
-		<div class="pagination">
-			<% if(paginatedResults.previous) { %>
-		<a href=<%= `./?page=${paginatedResults.previous.page}` %> class="button previous">
-			< </a>
-				<% } else {%>
-				<span class="button previous disabled">
-					< </span>
-						<% } %>
 
-						<div class="pages">
-							<% const currPage = paginatedResults.page %>
-							<% for(let i = 1; i<=paginatedResults.pageCount; i++) { %>
-							<a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
-							<% } %>
-						</div>
+		<%-include('partials/pagination'), {paginatedResults: paginatedResults}-%>
 
-						<% if(paginatedResults.next) { %>
-						<a href=<%= `./?page=${paginatedResults.next.page}` %> class="button next">></a>
-						<% } else {%>
-						<span class="button next disabled">></span>
-						<% } %>
-	</div>
 	<!-- </div> -->
 </div>
 

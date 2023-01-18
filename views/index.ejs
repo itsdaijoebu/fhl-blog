@@ -63,22 +63,27 @@
 		</div> -->
 		<div class="pagination">
 			<% if(paginatedResults.previous) { %>
-		<a href=<%= `./?page=${paginatedResults.previous.page}` %> class="button previous">Previous Page</a>
-		<% } %>
+		<a href=<%= `./?page=${paginatedResults.previous.page}` %> class="button previous">
+			< </a>
+				<% } else {%>
+				<span class="button previous disabled">
+					< </span>
+						<% } %>
 
-		<div class="pages">
-			<% const currPage = paginatedResults.page %>
-			<% for(let i = 1; i<=paginatedResults.pageCount; i++) { %>
-			<a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
-				<% } %>
-		</div>
+						<div class="pages">
+							<% const currPage = paginatedResults.page %>
+							<% for(let i = 1; i<=paginatedResults.pageCount; i++) { %>
+							<a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
+							<% } %>
+						</div>
 
-		<% if(paginatedResults.next) { %>
-		<a href=<%= `./?page=${paginatedResults.next.page}` %> class="button previous">Next Page</a>
-		<% } %>
+						<% if(paginatedResults.next) { %>
+						<a href=<%= `./?page=${paginatedResults.next.page}` %> class="button next">></a>
+						<% } else {%>
+						<span class="button next disabled">></span>
+						<% } %>
 	</div>
-
-</div>
+	<!-- </div> -->
 </div>
 
 <%-include('partials/footer')-%>

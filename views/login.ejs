@@ -1,15 +1,19 @@
 <%- include('partials/header', {title: "FaithHopeLove - Log In"}) -%>
-<h2 class="box post">Log In</h2>
-<form action="/login" method="POST">
-    <div>
-        <label for="email-address">Email: </label>
-        <input id="email-address" name="email" type="email" autocomplete="email" required>
-    </div>
-    <div>
-        <label for="password">Password: </label>
-        <input id="password" name="password" type="password">
-    </div>
-    <button type="submit" id="login-button">Submit</button>
-</form>
 
+<div id="content">
+    <div class="inner">
+        <h2 class="box post">Log In</h2>
+        <form action="/login" method="POST">
+            <div>
+                <label for="email-address">Email: </label>
+                <input id="email-address" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div>
+                <label for="password">Password: </label>
+                <input id="password" name="password" type="password">
+            </div>
+            <button type="submit" id="login-button">Submit</button>
+        </form>
+    </div>
+</div>
 <%- include('partials/footer') -%>

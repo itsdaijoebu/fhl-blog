@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 //routes
 const mainRoutes = require("./routes/main");
 const adminRoutes = require('./routes/admin');
+const postRoutes = require('./routes/post')
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -44,6 +45,7 @@ app.use(passport.session());
 app.use(flash())
 
 app.use("/", mainRoutes);
+app.use('/post', postRoutes);
 app.use('/admin', (req, res, next) => {
   if(req.user && req.user.isAdmin) {
     next()

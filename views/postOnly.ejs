@@ -1,0 +1,30 @@
+<%- include('partials/header', {title: 'FaithHopeLove'}) -%>
+
+<div id="content">
+    <div class="inner">
+      <article class="box post post-excerpt">
+        <header>
+            <h2><%=post.title%></h2>
+            <!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
+        </header>
+    
+        <div class="info">
+            <%const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
+            <% const month = months[post.date.getMonth()]%>
+            <span class="date"><span class="month"><%=month.slice(0, 3)%><span><%=month.slice(3)%></span></span> <span
+                    class="day"><%=post.date.getDate()%></span><span class="year">,
+                    <%=post.date.getFullYear()%></span></span>
+            <ul class="stats">
+                <!-- <li><a href="#" class="icon fa-comment"><%#post.comments.length%></a></li> -->
+                <li><a href="#" class="icon fa-heart"><%=post.likes%></a></li>
+                <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
+                            <li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
+            </ul>
+        </div>
+        <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a>
+        <%-post.body-%>
+    </article>
+    </div>
+</div>
+
+<%-include('partials/footer')-%>

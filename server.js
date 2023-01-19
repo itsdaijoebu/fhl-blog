@@ -39,8 +39,18 @@ app.use(flash())
 
 //routes
 const mainRoutes = require("./routes/main");
+const adminRoutes = require('./routes/admin');
 
 app.use("/", mainRoutes);
+app.use('/admin', (req, res, next) => {
+  console.log(req.user)
+  if(req.user && req.user.isAdmin) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+});
+app.use('/admin', adminRoutes)
 
 const PORT = 8001;
 app.listen(process.env.PORT || PORT, () => {

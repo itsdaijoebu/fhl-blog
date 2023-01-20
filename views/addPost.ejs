@@ -1,7 +1,21 @@
 <%- include('partials/header', {title: 'FaithHopeLove - Add Post'}) -%>
 
+<!-- const PostSchema = new MongoServerClosedError.Schema({
+    userID: {type: ObjectId, ref: "User", required: true},
+    date: {type: Date, default: Date.now},
+    likes: {type: Number, default: 0},
+    title: {type: String, required: true},
+    body: {type: String, required: true}
+}) -->
+
 <div id="content">
     <h1>Add post</h1>
+    <form action="./add-post" method="POST">
+        <input type="date" name="date">
+        <input type="text" name="title" required>
+        <textarea name="body" required></textarea>
+        <button>Submit</button>
+    </form>
 </div>
 
 <%- include('partials/footer') -%>

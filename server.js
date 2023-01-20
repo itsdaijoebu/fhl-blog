@@ -43,7 +43,6 @@ const adminRoutes = require('./routes/admin');
 
 app.use("/", mainRoutes);
 app.use('/admin', (req, res, next) => {
-  console.log(req.user)
   if(req.user && req.user.isAdmin) {
     next()
   } else {

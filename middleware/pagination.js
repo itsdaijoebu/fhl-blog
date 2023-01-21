@@ -1,6 +1,8 @@
 module.exports = {
   pagination: (model) => {
     return async (req, res, next) => {
+      if(req.query.page == 1) res.redirect('/');
+
       const page = req.query.page || 1;
       const limit = req.query.limit || 10;
 
@@ -12,7 +14,7 @@ module.exports = {
       const pageCount = Math.ceil(await model.countDocuments({})/limit) || 1;
 
       if(page > pageCount) {
-        res.redirect('./')
+        res.redirect('/')
       }
 
       if (startIndex > 0) {

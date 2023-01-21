@@ -1955,7 +1955,8 @@ ol li {
   }
   /* Pagination */
   .pagination {
-    padding: 3em 0 0 0;
+    /* padding: 3em 0 0 0; */
+    padding: 0 0 0 0;
   }
   .pagination .previous {
     margin-right: 0.6em;

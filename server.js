@@ -46,13 +46,13 @@ app.use(flash())
 
 
 app.use("/", mainRoutes);
-// app.use('/admin', (req, res, next) => {
-//   if(req.user && req.user.isAdmin) {
-//     next()
-//   } else {
-//     res.redirect('/')
-//   }
-// });
+app.use('/admin', (req, res, next) => {
+  if(req.user && req.user.isAdmin) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+});
 app.use('/admin', adminRoutes)
 
 const PORT = 8001;

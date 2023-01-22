@@ -18,25 +18,22 @@
                 <h2>Contact Us</h2>
                 <p>We'd love to hear from you!</p>
             </header>
-            <form action="">
+            <form action="/about" method="POST" id="contact-form">
                 <div>
                     <label for="name">Name:</label>
-                    <input type="text">
+                    <input name="name" type="text" required>
                 </div>
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email">
+                    <input name="email" type="email" required>
                 </div>
                 <div>
                     <label for="message">Message:</label>
-                    <textarea name="message" id="" cols="30" rows="10"></textarea>
+                    <textarea name="message" id="" cols="30" rows="10" required></textarea>
                 </div>
-            </form>>
+                <button>Send</button>
+            </form>
         </article>
-
-
-
-
     </div>
 </div>
 

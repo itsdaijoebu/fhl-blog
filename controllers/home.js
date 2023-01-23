@@ -1,4 +1,5 @@
 // const nodeMail = require("nodemailer")
+const Post = require('../models/Post')
 
 module.exports = {
     getIndex: (req, res) => {
@@ -46,5 +47,14 @@ module.exports = {
                 return Promise.reject(err);
             }
         }
+    },
+    getSearch: async (req, res) => {
+        const query = req.query.query
+        console.log('get search', query)
+        let regexp = new RegExp(query, 'i')
+        const searchResults = await Post.find({
+            $or: [{title: regexp}, {body: regexp}]
+        })
+        res.render('search.ejs', {searchTerms: query, searchResults: searchResults});
     }
 }

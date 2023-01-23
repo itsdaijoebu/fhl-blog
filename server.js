@@ -13,6 +13,7 @@ const methodOverride = require("method-override");
 const mainRoutes = require("./routes/main");
 const adminRoutes = require('./routes/admin');
 const postRoutes = require('./routes/post')
+const apiRoutes = require('./routes/api.js')
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -46,6 +47,7 @@ app.use(flash())
 
 app.use("/", mainRoutes);
 app.use('/post', postRoutes);
+app.use('/api', apiRoutes);
 app.use('/admin', (req, res, next) => {
   if(req.user && req.user.isAdmin) {
     next()

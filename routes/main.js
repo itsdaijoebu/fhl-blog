@@ -16,5 +16,6 @@ router.post('/signup', authController.postSignup);
 router.get('/about', homeController.getAbout);
 // router.get('/contact', homeController.getContact);
 router.post('/about', homeController.postContact);
+router.get('/search', homeController.getSearch);
 
 module.exports = router;

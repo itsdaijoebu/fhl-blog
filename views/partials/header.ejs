@@ -14,12 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/main.css" />
-    <!-- <script src="/assets/js/header.js"></script> -->
+    <script src="/assets/js/header.js" defer></script>
 </head>
 
 <body class="is-preload">
-
-
     <!-- Sidebar -->
     <div id="sidebar">
 
@@ -38,8 +36,8 @@
 
         <!-- Search -->
         <section class="box search">
-            <form method="post" action="#">
-                <input type="text" class="text" name="search" placeholder="Search" />
+            <form method="get" action="/search">
+                <input type="text" class="text" name="query" placeholder="Search" />
             </form>
         </section>
 
@@ -68,6 +66,12 @@
                 <li><a href="#">Ipsum metus nullam</a></li>
             </ul>
         </section> -->
+        <section class="box recent-posts">
+            <header>
+                <h2>Recent Posts</h2>
+            </header>
+            <ul id="recent-posts-list"></ul>
+        </section>
 
         <!-- Recent Comments -->
         <!-- <section class="box recent-comments">

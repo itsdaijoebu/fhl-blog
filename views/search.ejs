@@ -1,0 +1,18 @@
+<%- include('partials/header', {title: 'FaithHopeLove - Search Results', page: 'search'}) -%>
+
+<div id="content">
+    <div class="inner">
+        <article class="box post post-excerpt">
+            <header>
+                <h2>Search Results</h2>
+                <p>Results for "<%= searchTerms %>"</p>
+            </header>
+        </article>
+
+        <% for(let result of searchResults){ %>
+            <%- include('partials/post', {post: result}) -%>
+        <% } %>
+    </div>
+</div>
+
+<%- include('partials/footer') -%>

@@ -13,7 +13,7 @@ module.exports = {
             resource_type: 'auto',
         })
         console.log(result)
-        const titleUrl = req.body.title.replace(/[^a-z0-9\-]/gi, ''); 
+        const titleUrl = req.body.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, ''); 
         const post = Post.create({
             userID: req.user.id,
             date: req.body.date || Date.now(),

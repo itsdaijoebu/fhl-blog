@@ -6,6 +6,11 @@ async function getRecents() {
     const res = await fetch("/api/getRecents")
     const recents = await res.json();
     for(let post of recents) {
-        console.log(post.title)
+        const li = document.createElement('li')
+        const link = document.createElement('a')
+        link.href = `/post/${post.titleUrl}`
+        link.innerText = post.title
+        li.appendChild(link)
+        recentsList.appendChild(li)
     }
 }

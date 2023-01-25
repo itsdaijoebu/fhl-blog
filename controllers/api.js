@@ -6,10 +6,11 @@ module.exports = {
         res.send(recents)
     },
     getFromMonth: async (req, res) => {
-        const month = req.query.month;
-        const year = req.query.year;
+        const month = Number(req.query.month);
+        const year = Number(req.query.year);
+        console.log('month/year', month, year)
         const monthStart = new Date(year, month, 1);
-        const monthEnd = new Date(year, month+1, 1);
+        const monthEnd = new Date(month===11 ? year+1 : year, month===11 ? 0 : month+1, 1);
         const postsFromMonth = await Post.find({
             date: {
                 $gte: monthStart,
@@ -19,7 +20,7 @@ module.exports = {
         .sort({date: -1})
         .select('date titleUrl')
         .exec();
-        console.log('getmonth: ', postsFromMonth)
+        console.log('getmonth: ', monthStart, monthEnd, postsFromMonth)
 
         res.send(postsFromMonth)
     }

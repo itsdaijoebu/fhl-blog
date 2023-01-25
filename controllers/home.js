@@ -50,7 +50,6 @@ module.exports = {
     },
     getSearch: async (req, res) => {
         const query = req.query.query
-        console.log('get search', query)
         let regexp = new RegExp(query, 'i')
         const searchResults = await Post.find({
             $or: [{title: regexp}, {body: regexp}]

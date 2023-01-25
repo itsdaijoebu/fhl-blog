@@ -7,12 +7,10 @@ module.exports = {
     },
     postAddPost: async (req, res) => {
         try {
-        console.log(req.file.path)
         const result = await cloudinary.uploader.upload(req.file.path, {
             folder: 'fhl-website',
             resource_type: 'auto',
         })
-        console.log(result)
         const titleUrl = req.body.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, ''); 
         const post = Post.create({
             userID: req.user.id,

@@ -1239,6 +1239,18 @@ table {
   margin-bottom: 1em;
   width: 100%;
 }
+table .calendar-nav {
+  color: rgba(255, 255, 255, 0.55);
+  border-radius: 0.4em;
+  padding: 0.5rem;
+}
+table .calendar-nav.active {
+  color: #fff;
+  cursor: default;
+}
+table .calendar-nav.active:hover {
+  background-color: #465060;
+}
 table tbody tr:nth-child(2n+2) {
   background: #f4f4f4;
 }

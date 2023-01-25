@@ -17,7 +17,6 @@ async function getRecents() {
 }
 
 async function calendar() {
-  const calendarTitle = document.getElementById("calendar-title");
   const today = new Date();
   let month = today.getMonth();
   let year = today.getFullYear();
@@ -40,24 +39,54 @@ async function calendar() {
   let numDays = new Date(year, month + 1, 0).getDate();
   let dayOffset = 7 - firstDayOfMonth;
 
-  calendarTitle.innerText = `${months[month]} ${year}`;
-
   createCalendar();
 
-  function updateFirstLastDays(year, month) {
+  const calendarPrevious = document.getElementById("calendar-previous");
+  const calendarNext = document.getElementById("calendar-next");
+  calendarPrevious.addEventListener("click", calendarMonthChange);
+  calendarNext.addEventListener("click", calendarMonthChange);
+
+  function calendarMonthChange(e) {
+    const target = e.target;
+    if (!target.classList.contains("active")) return;
+    let targetYear = year;
+    let targetMonth = target.classList.contains("calendar-previous")
+      ? month - 1
+      : month + 1;
+    if (targetMonth < 0) {
+      targetMonth = 11;
+      targetYear--;
+    }
+    if (month > 11) {
+      targetMonth = 0;
+      targetYear++;
+    }
+
+    updateFirstLastDays(targetYear, targetMonth);
+    createCalendar();
+    console.log("change month", month, year);
+  }
+
+  function updateFirstLastDays(targetYear, targetMonth) {
+    year = targetYear;
+    month = targetMonth;
     firstDayOfMonth = new Date(year, month, 1).getDay();
     numDays = new Date(year, month + 1, 0).getDate();
     dayOffset = 7 - firstDayOfMonth;
   }
 
   async function createCalendar() {
-    const calendarBody = document.getElementById("calendar-body");
+    const calendarTitle = document.getElementById("calendar-title");
+    calendarTitle.innerText = `${months[month]} ${year}`;
 
+    const calendarBody = document.getElementById("calendar-body");
+    calendarBody.innerHTML = "";
     let firstWeek = calendarBody.insertRow();
     let firstCell = firstWeek.insertCell();
     firstCell.colSpan = firstDayOfMonth;
     let firstCellPadding = document.createTextNode("");
     firstCell.appendChild(firstCellPadding);
+
     for (let i = 1; i <= dayOffset; i++) {
       let cell = firstWeek.insertCell();
       cell.id = `day-${i}`;
@@ -75,28 +104,29 @@ async function calendar() {
         let day = document.createTextNode(j);
         cell.appendChild(day);
       }
-      if(endOfWeek === numDays) {
+      if (endOfWeek === numDays) {
         let cell = week.insertCell();
-        cell.colSpan = dayOffset - (numDays%7)
-        let padding = document.createTextNode('');
-        cell.appendChild(padding)
+        cell.colSpan = dayOffset - (numDays % 7);
+        let padding = document.createTextNode("");
+        cell.appendChild(padding);
       }
     }
 
-    if(month===today.getMonth() && year===today.getFullYear()) {
-        document.getElementById(`day-${today.getDate()}`).classList.add('today')
+    if (month === today.getMonth() && year === today.getFullYear()) {
+      document.getElementById(`day-${today.getDate()}`).classList.add("today");
     }
 
-    const res = await fetch(`/api/getFromMonth?month=${month}&year=${year}`)
+    const res = await fetch(`/api/getFromMonth?month=${month}&year=${year}`);
     const currMonthPosts = await res.json();
-    for(let post of currMonthPosts) {
-        const date = new Date(post.date).getDate()
-        const calendarDay = document.getElementById(`day-${date}`);
-        const textNode = calendarDay.childNodes[0];
-        const link = document.createElement('a');
-        link.href = `/post/${post.titleUrl}`;
-        calendarDay.replaceChild(link, textNode);
-        link.appendChild(textNode)
+    console.log("currmonthposts", month, year, currMonthPosts);
+    for (let post of currMonthPosts) {
+      const date = new Date(post.date).getDate();
+      const calendarDay = document.getElementById(`day-${date}`);
+      const textNode = calendarDay.childNodes[0];
+      const link = document.createElement("a");
+      link.href = `/post/${post.titleUrl}`;
+      calendarDay.replaceChild(link, textNode);
+      link.appendChild(textNode);
     }
   }
 }

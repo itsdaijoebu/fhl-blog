@@ -342,6 +342,22 @@ table {
   margin-bottom: 1em;
   width: 100%;
 
+  .calendar-nav {
+    color: rgba(255, 255, 255, 0.55);
+    border-radius: 0.4em;
+    padding: 0.5rem;
+    
+    &.active {
+      color: #fff;
+      cursor: default;
+
+      &:hover {
+        background-color: #465060;
+      }
+    }
+  }
+
+
   tbody {
     tr {
       &:nth-child(2n + 2) {
@@ -668,11 +684,11 @@ ol {
       }
 
       &.today {
-        background-color: #c94663;
-        background-image: url("images/bg01.png");
-        box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15),
-          0 0.025em 0.15em 0em rgba(0, 0, 0, 0.25);
-        color: #fff !important;
+          background-color: #c94663;
+          background-image: url("images/bg01.png");
+          box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15),
+            0 0.025em 0.15em 0em rgba(0, 0, 0, 0.25);
+          color: #fff !important;
       }
     }
   }
@@ -1374,7 +1390,7 @@ ol {
         // margin: 0 0 3em 0;
         padding: 0 0 0 0;
         margin: 0 0 0 0;
-
+        
         > p {
           font-size: 1.75em;
           line-height: 1.5em;

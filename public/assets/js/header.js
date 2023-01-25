@@ -41,43 +41,20 @@ async function calendar() {
 
   createCalendar();
 
-  const calendarPrevious = document.getElementById("calendar-previous");
-  const calendarNext = document.getElementById("calendar-next");
-  calendarPrevious.addEventListener("click", calendarMonthChange);
-  calendarNext.addEventListener("click", calendarMonthChange);
-
-  function calendarMonthChange(e) {
-    const target = e.target;
-    if (!target.classList.contains("active")) return;
-    let targetYear = year;
-    let targetMonth = target.classList.contains("calendar-previous")
-      ? month - 1
-      : month + 1;
-    if (targetMonth < 0) {
-      targetMonth = 11;
-      targetYear--;
-    }
-    if (month > 11) {
-      targetMonth = 0;
-      targetYear++;
-    }
-
-    updateFirstLastDays(targetYear, targetMonth);
-    createCalendar();
-    console.log("change month", month, year);
-  }
-
-  function updateFirstLastDays(targetYear, targetMonth) {
-    year = targetYear;
-    month = targetMonth;
-    firstDayOfMonth = new Date(year, month, 1).getDay();
-    numDays = new Date(year, month + 1, 0).getDate();
-    dayOffset = 7 - firstDayOfMonth;
-  }
-
   async function createCalendar() {
     const calendarTitle = document.getElementById("calendar-title");
     calendarTitle.innerText = `${months[month]} ${year}`;
+
+    const calendarPrevious = document.getElementById("calendar-previous");
+    const calendarNext = document.getElementById("calendar-next");
+    calendarPrevious.addEventListener("click", calendarMonthChange);
+    calendarNext.addEventListener("click", calendarMonthChange);
+
+    if (today.getMonth() === month && today.getFullYear() === year) {
+      calendarNext.classList.remove("active");
+    } else {
+      calendarNext.classList.add("active");
+    }
 
     const calendarBody = document.getElementById("calendar-body");
     calendarBody.innerHTML = "";
@@ -128,5 +105,34 @@ async function calendar() {
       calendarDay.replaceChild(link, textNode);
       link.appendChild(textNode);
     }
+  }
+
+  function calendarMonthChange(e) {
+    const target = e.target;
+    if (!target.classList.contains("active")) return;
+    let targetYear = year;
+    let targetMonth = target.classList.contains("calendar-previous")
+      ? month - 1
+      : month + 1;
+    if (targetMonth < 0) {
+      targetMonth = 11;
+      targetYear--;
+    }
+    if (targetMonth > 11) {
+      targetMonth = 0;
+      targetYear++;
+    }
+
+    updateFirstLastDays(targetYear, targetMonth);
+    createCalendar();
+    console.log("change month", month, year);
+  }
+
+  function updateFirstLastDays(targetYear, targetMonth) {
+    year = targetYear;
+    month = targetMonth;
+    firstDayOfMonth = new Date(year, month, 1).getDay();
+    numDays = new Date(year, month + 1, 0).getDate();
+    dayOffset = 7 - firstDayOfMonth;
   }
 }

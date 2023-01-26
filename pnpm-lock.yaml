@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   bcrypt: ^5.1.0
-  body-parser: ^1.20.1
   cloudinary: ^1.32.0
   connect-mongo: ^4.6.0
   dotenv: ^16.0.3
@@ -24,7 +23,6 @@ specifiers:
 
 dependencies:
   bcrypt: 5.1.0
-  body-parser: 1.20.1
   cloudinary: 1.32.0
   connect-mongo: 4.6.0_tcnyaabfkcm2wsuepw7oaf2n5q
   dotenv: 16.0.3

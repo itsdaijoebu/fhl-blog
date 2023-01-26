@@ -6,7 +6,8 @@ const PostSchema = new mongoose.Schema({
     date: {type: Date, default: Date.now()},
     likes: {type: Number, default: 0},
     title: {type: String, required: true},
-    body: {type: String, required: true}
+    body: {type: String, required: true},
+    images: [String]
 })
 
 module.exports = mongoose.model("Post", PostSchema)

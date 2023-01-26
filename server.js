@@ -9,6 +9,10 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const methodOverride = require("method-override");
 
+//routes
+const mainRoutes = require("./routes/main");
+const adminRoutes = require('./routes/admin');
+
 require("dotenv").config({ path: "./config/.env" });
 
 //passport config
@@ -21,6 +25,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger("dev"));
+
+app.use(methodOverride("_method"));
 
 app.use(
   session({
@@ -37,18 +43,16 @@ app.use(passport.session());
 
 app.use(flash())
 
-//routes
-const mainRoutes = require("./routes/main");
-const adminRoutes = require('./routes/admin');
+
 
 app.use("/", mainRoutes);
-app.use('/admin', (req, res, next) => {
-  if(req.user && req.user.isAdmin) {
-    next()
-  } else {
-    res.redirect('/')
-  }
-});
+// app.use('/admin', (req, res, next) => {
+//   if(req.user && req.user.isAdmin) {
+//     next()
+//   } else {
+//     res.redirect('/')
+//   }
+// });
 app.use('/admin', adminRoutes)
 
 const PORT = 8001;

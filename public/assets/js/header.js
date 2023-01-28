@@ -42,6 +42,8 @@ async function calendar() {
   createCalendar();
 
   async function createCalendar() {
+    const res = await fetch(`/api/getFromMonth?month=${month}&year=${year}`);
+    const currMonthPosts = await res.json();
     const calendarTitle = document.getElementById("calendar-title");
     calendarTitle.innerText = `${months[month]} ${year}`;
 
@@ -58,11 +60,14 @@ async function calendar() {
 
     const calendarBody = document.getElementById("calendar-body");
     calendarBody.innerHTML = "";
+
     let firstWeek = calendarBody.insertRow();
-    let firstCell = firstWeek.insertCell();
-    firstCell.colSpan = firstDayOfMonth;
-    let firstCellPadding = document.createTextNode("");
-    firstCell.appendChild(firstCellPadding);
+    if (dayOffset < 7) {
+      let firstCell = firstWeek.insertCell();
+      firstCell.colSpan = firstDayOfMonth;
+      let firstCellPadding = document.createTextNode("");
+      firstCell.appendChild(firstCellPadding);
+    }
 
     for (let i = 1; i <= dayOffset; i++) {
       let cell = firstWeek.insertCell();
@@ -93,9 +98,6 @@ async function calendar() {
       document.getElementById(`day-${today.getDate()}`).classList.add("today");
     }
 
-    const res = await fetch(`/api/getFromMonth?month=${month}&year=${year}`);
-    const currMonthPosts = await res.json();
-    console.log("currmonthposts", month, year, currMonthPosts);
     for (let post of currMonthPosts) {
       const date = new Date(post.date).getDate();
       const calendarDay = document.getElementById(`day-${date}`);
@@ -125,7 +127,6 @@ async function calendar() {
 
     updateFirstLastDays(targetYear, targetMonth);
     createCalendar();
-    console.log("change month", month, year);
   }
 
   function updateFirstLastDays(targetYear, targetMonth) {

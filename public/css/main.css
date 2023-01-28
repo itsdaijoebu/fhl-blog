@@ -1252,7 +1252,7 @@ table .calendar-nav {
 }
 table .calendar-nav.active {
   color: #fff;
-  cursor: default;
+  cursor: pointer;
 }
 table .calendar-nav.active:hover {
   background-color: #465060;

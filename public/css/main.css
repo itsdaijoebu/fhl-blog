@@ -1239,10 +1239,16 @@ table {
   margin-bottom: 1em;
   width: 100%;
 }
+table .calendar-previous {
+  float: left;
+}
+table .calendar-next {
+  float: right;
+}
 table .calendar-nav {
   color: rgba(255, 255, 255, 0.55);
   border-radius: 0.4em;
-  padding: 0.5rem;
+  padding: 0 0.75rem;
 }
 table .calendar-nav.active {
   color: #fff;

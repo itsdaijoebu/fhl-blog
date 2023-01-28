@@ -109,9 +109,12 @@ async function calendar() {
     }
   }
 
-  function calendarMonthChange(e) {
+  let isChanged = true;
+  async function calendarMonthChange(e) {
+    if(!isChanged) return
     const target = e.target;
     if (!target.classList.contains("active")) return;
+    isChanged = false;
     let targetYear = year;
     let targetMonth = target.classList.contains("calendar-previous")
       ? month - 1
@@ -126,7 +129,8 @@ async function calendar() {
     }
 
     updateFirstLastDays(targetYear, targetMonth);
-    createCalendar();
+    await createCalendar();
+    isChanged = true;
   }
 
   function updateFirstLastDays(targetYear, targetMonth) {

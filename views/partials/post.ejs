@@ -12,13 +12,14 @@
         <span class="date"><span class="month"><%=month.slice(0, 3)%><span><%=month.slice(3)%></span></span> <span
                 class="day"><%=post.date.getDate()%></span><span class="year">,
                 <%=post.date.getFullYear()%></span></span>
-        <ul class="stats">
+        <!-- <ul class="stats"> -->
             <!-- <li><a href="#" class="icon fa-comment"><%#post.comments.length%></a></li> -->
-            <li><a href="#" class="icon fa-heart"><%=post.likes%></a></li>
+            <!-- <li><a href="#" class="icon fa-heart"><%#post.likes%></a></li> -->
             <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
                         <li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
-        </ul>
+        <!-- </ul> -->
     </div>
-    <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a>
+    <!-- <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a> -->
+    <img class="image featured feed" src=<%=post.images[0]%> alt="" />
     <%-post.body-%>
 </article>

@@ -1283,6 +1283,9 @@ form label {
   color: #232323;
   margin: 0 0 0.75em 0;
 }
+form button {
+  margin-top: 0.75em;
+}
 form input[type=text],
 form input[type=email],
 form input[type=password],

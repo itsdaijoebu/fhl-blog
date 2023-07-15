@@ -8,8 +8,7 @@ const PostSchema = new mongoose.Schema({
     title: {type: String, required: true, unique: true},
     titleUrl: {type: String, unique: true},
     body: {type: String, required: true},
-    images: [String],
-
+    images: [String]
 })
 
 module.exports = mongoose.model("Post", PostSchema)

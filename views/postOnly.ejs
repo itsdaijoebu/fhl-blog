@@ -1,31 +1,57 @@
-<%- include('partials/header', {title: 'FaithHopeLove', page:'singlePost'}) -%>
+<%- include('partials/header', {title: 'FaithHopeLove' , page:'singlePost'}) -%>
 
-<div id="content">
-    <div class="inner">
-      <article class="box post post-excerpt">
-        <header>
-            <h2><%=post.title%></h2>
-            <!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
-        </header>
-    
-        <div class="info">
-            <%const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
-            <% const month = months[post.date.getMonth()]%>
-            <span class="date"><span class="month"><%=month.slice(0, 3)%><span><%=month.slice(3)%></span></span> <span
-                    class="day"><%=post.date.getDate()%></span><span class="year">,
-                    <%=post.date.getFullYear()%></span></span>
-            <ul class="stats">
-                <!-- <li><a href="#" class="icon fa-comment"><%#post.comments.length%></a></li> -->
-                <li><a href="#" class="icon fa-heart"><%=post.likes%></a></li>
-                <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
+    <div id="content">
+        <div class="inner">
+            <article class="box post post-excerpt">
+                <header>
+                    <h2>
+                        <%=post.title%>
+                    </h2>
+                    <!-- <p>Feugiat interdum sed commodo ipsum consequat dolor nullam metus</p> -->
+                </header>
+
+                <div class="info">
+                    <%const months=['January', 'February' , 'March' , 'April' , 'May' , 'June' , 'July' , 'August'
+                        , 'September' , 'October' , 'November' , 'December' ] %>
+                        <% const month=months[post.date.getMonth()]%>
+                            <span class="date"><span class="month">
+                                    <%=month.slice(0, 3)%><span>
+                                            <%=month.slice(3)%>
+                                        </span>
+                                </span> <span class="day">
+                                    <%=post.date.getDate()%>
+                                </span><span class="year">,
+                                    <%=post.date.getFullYear()%>
+                                </span></span>
+                            <ul class="stats">
+                                <!-- <li><a href="#" class="icon fa-comment"><%#post.comments.length%></a></li> -->
+                                <li><a href="#" class="icon fa-heart">
+                                        <%=post.likes%>
+                                    </a></li>
+                                <!-- <li><a href="#" class="icon brands fa-twitter">64</a></li>
                             <li><a href="#" class="icon brands fa-facebook-f">128</a></li> -->
-            </ul>
-        </div>
-        <!-- <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a> -->
-        <img class="image featured feed" src=<%=post.images[0]%> alt="" />
-        <%-post.body-%>
-    </article>
-    </div>
-</div>
+                            </ul>
+                </div>
 
-<%-include('partials/footer')-%>
+
+                <!-- TEMPORARY - ADD IMAGE -->
+                <div class="add-image-container">
+                    <span>Post id: <span id='post-id'>
+                            <%=post.id%>
+                        </span></span>
+                    <label>Add images: </label>
+                    <span class="button add-images" id="add-more-images-btn">+</span>
+                    <form action=""></form>
+                </div>
+                <span id="submit-button" class="button">Submit</span>
+
+
+                <!-- <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a> -->
+                <img class="image featured feed" src=<%=post.images[0]%> alt="" />
+                <%-post.body-%>
+            </article>
+        </div>
+    </div>
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script src="/assets/js/temp.js"></script>
+    <%-include('partials/footer')-%>

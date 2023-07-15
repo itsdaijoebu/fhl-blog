@@ -52,6 +52,6 @@ form.addEventListener('submit', e => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", './add-post', true)
     xhr.send(formData)
-    // window.location.reload();
+    window.location.reload();
 })
 

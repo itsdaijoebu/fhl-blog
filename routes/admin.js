@@ -5,7 +5,7 @@ const authController = require('../controllers/auth');
 const auth = require('../middleware/auth');
 const upload = require('../middleware/multer')
 
-router.get('/', adminController.getAddPost);
+router.get('/', adminController.getAdmin);
 router.get('/add-post', adminController.getAddPost);
 router.post('/add-post', upload.single('image'), adminController.postAddPost);
 router.get('/update-mongo', adminController.updateMongo);

@@ -30,14 +30,13 @@ const uploadWidget = cloudinary.createUploadWidget({
         console.log('err:', err, 'info:', res.info)
         if (res.info.secure_url) {
             console.log('secureurl:', res.info.secure_url)
-            imageArray.push(secure_url)
+            imageArray.push(res.info.secure_url)
             console.log('imgurls:', imageArray)
         }
     }
 )
 
 const addMoreImages = document.getElementById('add-more-images-btn')
-console.log(addMoreImages)
 addMoreImages.addEventListener('click', () => uploadWidget.open())
 
 
@@ -46,10 +45,13 @@ form.addEventListener('submit', e => {
     const formData = new FormData(form)
     const content = editor.getData();
     formData.append('body', content)
-    formData.append('imageArray', imageArray)
+    console.log('image array submitted', imageArray)
+    for(let image of imageArray) {
+        formData.append('imageArray', image)
+    }
     const xhr = new XMLHttpRequest();
     xhr.open("POST", './add-post', true)
     xhr.send(formData)
-    window.location.reload();
+    // window.location.reload();
 })
 

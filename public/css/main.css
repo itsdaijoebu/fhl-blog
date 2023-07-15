@@ -2437,9 +2437,7 @@ ol li {
   }
 }
 .add-image-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  margin-top: 0.5rem;
 }
 .add-image-container .button {
   width: 2em;

@@ -2,6 +2,9 @@ const Post = require('../models/Post')
 const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
+    getAdmin: (req, res) => {
+        res.render('admin.ejs')
+    },
     getAddPost: (req, res) => {
         res.render('addPost.ejs')
     },
@@ -19,7 +22,7 @@ module.exports = {
             titleUrl: titleUrl,
             body: req.body.body,
             // images: result.secure_url
-            images: result.imageArray
+            images: req.body.imageArray
         })
         res.redirect('add-post')
         } catch (err) {
@@ -30,8 +33,6 @@ module.exports = {
         // const posts = await Post.find()
         res.redirect('/')
     }
-
-    
 }
 
 // const PostSchema = new MongoServerClosedError.Schema({

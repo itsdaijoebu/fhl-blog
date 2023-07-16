@@ -36,23 +36,24 @@ module.exports = {
     },
     addJsonPosts: async (req, res) => {
         try {
-            for (let i = 2; i < 4; i++) {
-                let post = jsonFile[i];
+            for (let post of jsonFile) {
                 // console.log('JSON images', i, curr)
                 // console.log('JSON date', i, curr.creation_time)
                 let imageUrls = []
-                for (let imageUrl of post.attachments.images) {
-                    imageUrls.push(imageUrl.img)
+                if (post.attachments) {
+                    for (let imageUrl of post.attachments.images) {
+                        imageUrls.push(imageUrl.img)
+                    }
                 }
                 console.log(post.creation_time, post.post_title, post.message, imageUrls)
                 let message = ""
-                if(post.message) {
+                if (post.message) {
                     message = post.message.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>")
                 }
 
                 Post.create({
                     userID: req.user.id,
-                    date: post.creation_time*1000 || Date.now(),
+                    date: post.creation_time * 1000 || Date.now(),
                     title: post.post_title,
                     titleUrl: post.post_title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, ''),
                     body: '<p>' + message + '</p>',

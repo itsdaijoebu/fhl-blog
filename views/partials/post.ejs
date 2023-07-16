@@ -22,11 +22,8 @@
     <!-- <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a> -->
     
 
-
-
-
-    <img class="image featured feed" src=<%=post.images[0]%> alt="" /> 
-
+    <!-- <img class="image featured feed" src=<%=post.images[0]%> alt="" />  -->
+    <%-include('img-gallery', {images: post.images})-%>
     <%-post.body-%>
 
 

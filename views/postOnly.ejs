@@ -46,9 +46,10 @@
                 <span id="submit-button" class="button">Submit</span>
 
 
-                <!-- <a href="#" class="image featured feed"><img src=<%=post.images[0]%> alt="" /></a> -->
-                <img class="image featured feed" src=<%=post.images[0]%> alt="" />
-                <%-post.body-%>
+                <!-- <img class="image featured feed" src=<%=post.images[0]%> alt="" /> -->
+                <%-include('partials/img-gallery', {images: post.images})-%>
+
+                    <%-post.body-%>
             </article>
         </div>
     </div>

@@ -14,30 +14,22 @@
 */
 
 // Breakpoints.
-@include breakpoints(
-  (
-    desktop: (
-      737px,
+@include breakpoints((desktop: (737px,
       null,
     ),
-    wide: (
-      1201px,
+    wide: (1201px,
       null,
     ),
-    narrow: (
-      737px,
+    narrow: (737px,
       1200px,
     ),
-    narrower: (
-      737px,
+    narrower: (737px,
       1000px,
     ),
-    mobile: (
-      null,
+    mobile: (null,
       736px,
     ),
-  )
-);
+  ));
 
 // Reset.
 // Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
@@ -214,6 +206,7 @@ body {
 
   // Stops initial animations until page loads.
   &.is-preload {
+
     *,
     *:before,
     *:after {
@@ -345,6 +338,7 @@ table {
   .calendar-previous {
     float: left;
   }
+
   .calendar-next {
     float: right;
   }
@@ -446,7 +440,7 @@ form {
 header {
   margin: 0 0 2em 0;
 
-  > p {
+  >p {
     font-family: "Open Sans Condensed", sans-serif;
     font-weight: 300;
     display: block;
@@ -460,7 +454,7 @@ article {
   margin-bottom: 3em;
 
   > :last-child,
-  > .inner > :last-child,
+  >.inner> :last-child,
   &:last-child {
     margin-bottom: 0;
   }
@@ -524,10 +518,8 @@ button,
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
   text-decoration: none;
-  @include vendor(
-    "transition",
-    ("background-color .25s ease-in-out", "color .25s ease-in-out")
-  );
+  @include vendor("transition",
+    ("background-color .25s ease-in-out", "color .25s ease-in-out"));
   text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.5);
 
   &:disabled,
@@ -670,6 +662,7 @@ ol {
     }
 
     td {
+
       a,
       span {
         display: block;
@@ -822,7 +815,7 @@ ol {
     line-height: normal;
   }
 
-  > .label {
+  >.label {
     display: none;
   }
 
@@ -842,7 +835,7 @@ ol {
 /* Nav */
 
 #nav {
-  > ul > li > ul {
+  >ul>li>ul {
     display: none;
   }
 
@@ -873,10 +866,8 @@ ol {
       text-decoration: none;
       border-radius: 0.4em;
       outline: 0;
-      @include vendor(
-        "transition",
-        ("background-color .25s ease-in-out", "color .25s ease-in-out")
-      );
+      @include vendor("transition",
+        ("background-color .25s ease-in-out", "color .25s ease-in-out"));
     }
 
     &.current {
@@ -980,6 +971,7 @@ ol {
   @include vendor("flex-shrink", "0");
 
   form {
+
     input,
     select,
     textarea {
@@ -1038,7 +1030,7 @@ ol {
   @include vendor("flex-grow", "1");
   @include vendor("flex-shrink", "1");
 
-  > .inner {
+  >.inner {
     position: relative;
     z-index: 1;
   }
@@ -1171,13 +1163,10 @@ ol {
             a {
               border-radius: 0.4em;
               opacity: 0.5;
-              @include vendor(
-                "transition",
-                (
-                  "opacity .25s ease-in-out",
+              @include vendor("transition",
+                ("opacity .25s ease-in-out",
                   "background-color .25s ease-in-out"
-                )
-              );
+                ));
             }
 
             &:hover {
@@ -1223,7 +1212,7 @@ ol {
   #content {
     box-shadow: 0 0 0.25em 0em rgba(0, 0, 0, 0.25);
 
-    > .inner {
+    >.inner {
       /*
 						This sets an upper limit on your page content to prevent it
 						from looking insane on really wide displays. It's currently set
@@ -1283,7 +1272,7 @@ ol {
         padding: 0 0 0 0;
         margin: 0 0 3em 0;
 
-        > p {
+        >p {
           font-size: 2.25em;
           line-height: 1.5em;
           position: relative;
@@ -1401,7 +1390,7 @@ ol {
         padding: 0 0 0 0;
         margin: 0 0 0 0;
 
-        > p {
+        >p {
           font-size: 1.75em;
           line-height: 1.5em;
           position: relative;
@@ -1561,7 +1550,7 @@ ol {
       margin-bottom: 4em;
 
       header {
-        > p {
+        >p {
           font-size: 1em;
           font-family: "Source Sans Pro", sans-serif;
           line-height: 1.5em;
@@ -1713,6 +1702,7 @@ ol {
 
   body {
     &.sidebar-visible {
+
       #content,
       #titleBar {
         @include vendor("transform", "translateX(#{_size(sidebar)})");
@@ -1728,10 +1718,45 @@ ol {
 // Admin styling where I don't care about breakpoints
 .add-image-container {
   margin-top: 0.5rem;
+
   .button {
     width: 2em;
     height: 2em;
     padding: 0;
     font-weight: 700;
+  }
+}
+
+// image gallery
+.image-gallery {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+  scroll-behavior: smooth;
+  display: flex;
+
+  img {
+    display: block;
+    margin: 0;
+    height: 30vh;
+    // width: 100%;
+    // max-width: 100%;
+    // margin-bottom: 1.5rem;
+  }
+
+  li {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    // width: min(50vw, 350px);
+    display: inline-block;
+    // padding-bottom: 1.5rem;
+    // box-shadow: -10px 0 30px 0 rgba(#000, 0.25);
+    // margin-left: -4px;
   }
 }

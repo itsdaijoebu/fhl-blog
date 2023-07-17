@@ -1,5 +1,6 @@
 const Post = require('../models/Post')
 const cloudinary = require("../middleware/cloudinary");
+const jsonFile = require("../config/json-data")
 
 module.exports = {
     getAdmin: (req, res) => {
@@ -10,28 +11,58 @@ module.exports = {
     },
     postAddPost: async (req, res) => {
         try {
-        // const result = await cloudinary.uploader.upload(req.file.path, {
-        //     folder: 'fhl-website',
-        //     resource_type: 'auto',
-        // })
-        const titleUrl = req.body.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, ''); 
-        const post = Post.create({
-            userID: req.user.id,
-            date: req.body.date || Date.now(),
-            title: req.body.title,
-            titleUrl: titleUrl,
-            body: req.body.body,
-            // images: result.secure_url
-            images: req.body.imageArray
-        })
-        res.redirect('add-post')
+            // const result = await cloudinary.uploader.upload(req.file.path, {
+            //     folder: 'fhl-website',
+            //     resource_type: 'auto',
+            // })
+            const titleUrl = req.body.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, '');
+            const post = Post.create({
+                userID: req.user.id,
+                date: req.body.date || Date.now(),
+                title: req.body.title,
+                titleUrl: titleUrl,
+                body: req.body.body,
+                // images: result.secure_url
+                images: req.body.imageArray
+            })
+            res.redirect('add-post')
         } catch (err) {
             console.log(err)
         }
     },
-    updateMongo: async(req, res) => {
+    updateMongo: async (req, res) => {
         // const posts = await Post.find()
         res.redirect('/')
+    },
+    addJsonPosts: async (req, res) => {
+        try {
+            for (let i = 2; i < 4; i++) {
+                let post = jsonFile[i];
+                // console.log('JSON images', i, curr)
+                // console.log('JSON date', i, curr.creation_time)
+                let imageUrls = []
+                for (let imageUrl of post.attachments.images) {
+                    imageUrls.push(imageUrl.img)
+                }
+                console.log(post.creation_time, post.post_title, post.message, imageUrls)
+                let message = ""
+                if(post.message) {
+                    message = post.message.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>")
+                }
+
+                Post.create({
+                    userID: req.user.id,
+                    date: post.creation_time*1000 || Date.now(),
+                    title: post.post_title,
+                    titleUrl: post.post_title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9\-]/gi, ''),
+                    body: '<p>' + message + '</p>',
+                    images: imageUrls
+                })
+            }
+            res.render('add-json-posts', { jsonData: jsonFile })
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 

@@ -1,3 +1,7 @@
-<% for(image of images) {%>
-    <img class = "image featured feed" src=<%=image%>>
-<%}%>
+<ul class="image-gallery">
+    <% for(image of images) {%>
+        <li>
+            <img class = "gallery" src=<%=image%>>
+        </li>
+    <%}%>
+</ul>

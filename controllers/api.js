@@ -8,7 +8,6 @@ module.exports = {
     getFromMonth: async (req, res) => {
         const month = Number(req.query.month);
         const year = Number(req.query.year);
-        console.log('month/year', month, year)
         const monthStart = new Date(year, month, 1);
         const monthEnd = new Date(month===11 ? year+1 : year, month===11 ? 0 : month+1, 1);
         const postsFromMonth = await Post.find({
@@ -20,7 +19,6 @@ module.exports = {
         .sort({date: -1})
         .select('date titleUrl')
         .exec();
-        console.log('getmonth: ', monthStart, monthEnd, postsFromMonth)
 
         res.send(postsFromMonth)
     }

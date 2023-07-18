@@ -1473,7 +1473,6 @@ ol li {
   display: inline-block;
   width: 1.5em;
   text-align: center;
-  margin: 0 0.4em 0 0;
 }
 .pagination .pages a {
   cursor: pointer;
@@ -1484,7 +1483,7 @@ ol li {
   background-color: #e8e8e8;
   background-image: url("images/bg02.png");
   color: #565656;
-  margin: 0 0.4em 0 0;
+  margin: 0 0.1em;
   border-radius: 0.4em;
   -moz-transition: background-color .25s ease-in-out;
   -webkit-transition: background-color .25s ease-in-out;
@@ -1975,8 +1974,9 @@ ol li {
     padding: 0.75em 2em 0.75em 2em;
   }
   /* Pagination */
-  .pagination {
-    padding: 3em 0 0 0;
+  .pagination .previous,
+  .pagination .next {
+    padding: 0 1em;
   }
   .pagination .previous {
     margin-right: 0.6em;
@@ -1994,6 +1994,13 @@ ol li {
     padding-top: 0;
     padding-bottom: 0;
     line-height: 2.75em;
+  }
+  .pagination .pagination-spacer {
+    padding: 0;
+    margin: 0;
+  }
+  .pagination .pagination-spacer:before {
+    content: "...";
   }
   /* Box */
   .box.post .info .stats {

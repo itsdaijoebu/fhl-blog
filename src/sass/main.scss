@@ -581,7 +581,6 @@ ol {
       display: inline-block;
       width: 1.5em;
       text-align: center;
-      margin: 0 0.4em 0 0;
     }
 
     a {
@@ -593,7 +592,7 @@ ol {
       background-color: #e8e8e8;
       background-image: url("images/bg02.png");
       color: #565656;
-      margin: 0 0.4em 0 0;
+      margin: 0 0.1em;
       border-radius: 0.4em;
       @include vendor("transition", "background-color .25s ease-in-out");
       box-shadow: inset 0 0.075em 0.25em 0 rgba(0, 0, 0, 0.1);
@@ -1122,7 +1121,12 @@ ol {
   /* Pagination */
 
   .pagination {
-    padding: 3em 0 0 0;
+    // padding: 3em 0 0 0;
+
+    .previous,
+    .next {
+      padding: 0 1em; 
+    }
 
     .previous {
       margin-right: 0.6em;
@@ -1137,6 +1141,7 @@ ol {
         width: 2.75em;
         height: 2.75em;
         line-height: 2.75em;
+
       }
     }
 
@@ -1145,6 +1150,14 @@ ol {
       padding-top: 0;
       padding-bottom: 0;
       line-height: 2.75em;
+    }
+
+    .pagination-spacer {
+      padding: 0;
+      margin: 0;
+      &:before {
+        content: '...';
+      }
     }
   }
 

@@ -37,15 +37,12 @@ module.exports = {
     addJsonPosts: async (req, res) => {
         try {
             for (let post of jsonFile) {
-                // console.log('JSON images', i, curr)
-                // console.log('JSON date', i, curr.creation_time)
                 let imageUrls = []
                 if (post.attachments) {
                     for (let imageUrl of post.attachments.images) {
                         imageUrls.push(imageUrl.img)
                     }
                 }
-                console.log(post.creation_time, post.post_title, post.message, imageUrls)
                 let message = ""
                 if (post.message) {
                     message = post.message.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>")

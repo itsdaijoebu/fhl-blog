@@ -1,22 +1,43 @@
 <div class="pagination">
     <% if(paginatedResults.previous) { %>
-    <a href=<%= `./?page=${paginatedResults.previous.page}` %> class="button previous">
-        < </a>
-            <% } else {%>
-            <span class="button previous disabled">
-                < </span>
-                    <% } %>
+        <a href=<%= `./?page=${paginatedResults.previous.page}` %> class="button previous"><</a>
+    <% } else {%>
+        <span class="button previous disabled"><</span>
+    <% } %>
 
-                    <div class="pages">
-                        <% const currPage = paginatedResults.page %>
-                        <% for(let i = 1; i<=paginatedResults.pageCount; i++) { %>
-                        <a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
-                        <% } %>
-                    </div>
+    <div class="pages">
+        <% const lastPage = paginatedResults.pageCount %>
+        <% const currPage = paginatedResults.page %>
+        <% let countPagesFrom = currPage - 2 %>
+        <% let countPagesTo = countPagesFrom + 5 %>
 
-                    <% if(paginatedResults.next) { %>
-                    <a href=<%= `./?page=${paginatedResults.next.page}` %> class="button next">></a>
-                    <% } else {%>
-                    <span class="button next disabled">></span>
-                    <% } %>
+        <a href=<%= `./?page=1`%> <%if(1===currPage){ %>class="active" <% } %>>1</a>
+        <% if(countPagesFrom > 2) {%>
+            <span class="pagination-spacer"></span>
+        <%} else {%>
+            <% countPagesFrom = 2; %>
+            <% countPagesTo = 7 %>
+        <%}%>
+                        
+        <% if(countPagesTo >= lastPage) {%>
+            <% countPagesTo = lastPage %>
+        <%}%>
+
+        <% for(let i = countPagesFrom; i < countPagesTo; i++) { %>
+            <a href=<%= `./?page=${i}`%> <%if(i===currPage){ %>class="active" <% } %>><%= i %> </a>
+        <% } %>
+
+        <% if(lastPage > countPagesTo){ %>
+            <span class="pagination-spacer"></span>
+        <%}%>
+
+        <a href=<%= `./?page=${lastPage}`%> <%if(lastPage===currPage){ %>class="active" <% } %>><%= lastPage %> </a>
+
+    </div>
+
+    <% if(paginatedResults.next) { %>
+        <a href=<%= `./?page=${paginatedResults.next.page}` %> class="button next">></a>
+    <% } else {%>
+        <span class="button next disabled">></span>
+    <% } %>
 </div>

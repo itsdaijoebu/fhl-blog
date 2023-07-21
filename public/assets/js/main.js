@@ -85,21 +85,16 @@ Array.from(imageGalleries).forEach(gallery => {
 		}
 	})
 
-	// let isMouseDown = false;
-	// let lastOffsetX = 0;
-	// gallery.addEventListener("mouseup", () => {
-	// 	isMouseDown = false;
-	// })
-	// gallery.addEventListener('mousedown', (e) => {
-	// 	isMouseDown = true;
-	// 	lastOffsetX = e.offsetX;
-	// })
-	// gallery.addEventListener("mousemove", (e) => {
-	// 	e.preventDefault();
-	// 	if (isMouseDown) {
-	// 		// while (e.target === gallery) {
-	// 		console.log(e.target, e.offsetX)
-	// 		// }
-	// 	}
-	// })
+	// need to add left/right buttons for navigating photos when they're in a scrollable container
+	gallery.addEventListener('click', (e) => {
+		// console.log(e.currentTarget.scrollWidth, e.currentTarget.clientWidth, e.clientX)
+	})
+
+	// enlarge images on click
+	const images = gallery.getElementsByClassName('gallery-image');
+	Array.from(images).forEach(image => {
+		image.addEventListener('click', (e) => {
+			console.log(e.target)
+		})
+	})
 })

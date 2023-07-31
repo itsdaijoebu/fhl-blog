@@ -1,7 +1,11 @@
-<ul class="image-gallery">
-    <% for(image of images) {%>
-        <li>
-            <img class="gallery-image" src=<%=image%>>
-        </li>
-    <%}%>
-</ul>
+<section class="image-gallery-container">
+    <div class="gallery-scroll gs-left hidden" id="gallery-scroll-left"><span class="gs-symbol-bg"></span></div>
+        <ul class="image-gallery">
+            <% for(image of images) {%>
+                <li>
+                    <img class="gallery-image" src=<%=image%>>
+                </li>
+            <%}%>
+            </ul>
+    <div class="gallery-scroll gs-right hidden" id="gallery-scroll-right"><span class="gs-symbol-bg"></span></div>
+</section>

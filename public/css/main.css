@@ -1294,6 +1294,7 @@ form textarea {
   display: block;
   border-radius: 0.4em;
   -webkit-appearance: none;
+  appearance: none;
   border: solid 1px #ddd;
   padding: 0.5em 0.75em;
   width: 100%;
@@ -2443,17 +2444,49 @@ ol li {
     transform: translateX(0);
   }
 }
-.add-image-container {
-  margin-top: 0.5rem;
+.image-gallery-container {
+  display: flex;
+  max-width: fit-content;
+  position: relative;
 }
-.add-image-container .button {
-  width: 2em;
-  height: 2em;
-  padding: 0;
-  font-weight: 700;
+.image-gallery-container .gallery-scroll {
+  background-color: rgba(153, 148, 148, 0.5);
+  position: absolute;
+  height: 30vh;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 2em;
 }
-
-.image-gallery {
+.image-gallery-container .gallery-scroll.gs-left {
+  top: 0;
+  left: 0;
+}
+.image-gallery-container .gallery-scroll.gs-left .gs-symbol-bg::before {
+  content: "<";
+}
+.image-gallery-container .gallery-scroll.gs-right {
+  top: 0;
+  right: 0;
+}
+.image-gallery-container .gallery-scroll.gs-right .gs-symbol-bg::before {
+  content: ">";
+}
+.image-gallery-container .gallery-scroll .gs-symbol-bg {
+  background-color: rgba(238, 238, 238, 0.8);
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-gallery-container .gallery-scroll .gs-symbol-bg::before {
+  content: "<";
+}
+.image-gallery-container .image-gallery {
   padding: 0;
   margin: 0;
   display: block;
@@ -2464,20 +2497,41 @@ ol li {
   text-align: center;
   display: flex;
   scroll-behavior: smooth;
-  scrollbar-width: 7px;
+  scrollbar-width: 3px;
 }
-.image-gallery::-webkit-scrollbar {
-  height: 7px;
+.image-gallery-container .image-gallery::-webkit-scrollbar {
+  height: 3px;
   background-color: black;
 }
-.image-gallery::-webkit-scrollbar-thumb {
+.image-gallery-container .image-gallery::-webkit-scrollbar-thumb {
   background-color: grey;
   border-radius: 30px;
 }
-.image-gallery img {
+.image-gallery-container .image-gallery img {
   display: block;
   margin: 0;
   height: 30vh;
+}
+.image-gallery-container .image-gallery li:first-of-type {
+  padding-left: 0;
+}
+
+.add-image-container {
+  margin-top: 0.5rem;
+}
+.add-image-container .button {
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  font-weight: 700;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

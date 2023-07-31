@@ -72,7 +72,9 @@
 // enables horizontal scrolling on horizontally scrollable image galleries
 const imageGalleries = document.getElementsByClassName('image-gallery');
 Array.from(imageGalleries).forEach(gallery => {
-	console.log(gallery)
+	if(gallery.scrollWidth > gallery.clientWidth) {
+		console.log(gallery, 'overflows')
+	}
 	gallery.addEventListener('wheel', (e) => {
 		const scrollable = gallery.scrollWidth - gallery.clientWidth;
 		if (gallery.scrollLeft <= 0 && e.deltaY < 0) return;

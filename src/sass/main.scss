@@ -408,6 +408,7 @@ form {
     display: block;
     border-radius: 0.4em;
     -webkit-appearance: none;
+    appearance: none;
     border: solid 1px #ddd;
     padding: 0.5em 0.75em;
     width: 100%;
@@ -1125,7 +1126,7 @@ ol {
 
     .previous,
     .next {
-      padding: 0 1em; 
+      padding: 0 1em;
     }
 
     .previous {
@@ -1155,6 +1156,7 @@ ol {
     .pagination-spacer {
       padding: 0;
       margin: 0;
+
       &:before {
         content: '...';
       }
@@ -1729,6 +1731,97 @@ ol {
   }
 }
 
+
+
+// image gallery
+.image-gallery-container {
+  $img-height: 30vh;
+
+  display: flex;
+  max-width: fit-content;
+  position: relative;
+
+  .gallery-scroll {
+    background-color: rgba(153, 148, 148, 0.5);
+    position: absolute;
+    height: $img-height;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 2em;
+
+    &.gs-left {
+      top: 0;
+      left: 0;
+
+      .gs-symbol-bg::before {
+        content: '<'
+      }
+    }
+    &.gs-right {
+      top: 0;
+      right: 0;
+      .gs-symbol-bg::before {
+        content: '>'
+      }
+    }
+
+    .gs-symbol-bg {
+      background-color: rgba(238, 238, 238, 0.8);
+      height: 1em;
+      width: 1em;
+      border-radius: 50%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &::before {
+        content: '<'
+      }
+    }
+  }
+
+  .image-gallery {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    scroll-behavior: smooth;
+
+    //scrollbar
+    $scroll-height: 3px;
+    scrollbar-width: $scroll-height;
+
+    &::-webkit-scrollbar {
+      height: $scroll-height;
+      background-color: black;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: grey;
+      border-radius: 30px;
+    }
+
+
+    img {
+      display: block;
+      margin: 0;
+      height: $img-height;
+    }
+
+    li:first-of-type {
+      padding-left: 0;
+    }
+  }
+}
+
 // Admin styling where I don't care about breakpoints
 .add-image-container {
   margin-top: 0.5rem;
@@ -1741,50 +1834,10 @@ ol {
   }
 }
 
-// image gallery
-.image-gallery {
-  padding: 0;
-  margin: 0;
-  display: block;
-  width: 100%;
-  overflow-y: hidden;
-  overflow-x: auto;
-  white-space: nowrap;
-  text-align: center;
-  display: flex;
-  scroll-behavior: smooth;
-  
-  //scrollbar
-  $scroll-height: 7px;
-  scrollbar-width: $scroll-height;
-  &::-webkit-scrollbar {
-    height: $scroll-height;
-    background-color: black;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 30px;
-  }
-  
-
-  img {
-    display: block;
-    margin: 0;
-    height: 30vh;
-    // width: 100%;
-    // max-width: 100%;
-    // margin-bottom: 1.5rem;
-  }
-
-  li {
-    // position: -webkit-sticky;
-    // position: sticky;
-    // left: 0;
-    // width: min(50vw, 350px);
-    // display: inline-block;
-    // padding-bottom: 1.5rem;
-    // box-shadow: -10px 0 30px 0 rgba(#000, 0.25);
-    // margin-left: -4px;
-    
-  }
+// Utility classes
+.hidden {
+  visibility: hidden;
+}
+.none {
+  display: none;
 }

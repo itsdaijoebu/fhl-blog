@@ -1742,10 +1742,10 @@ ol {
   position: relative;
 
   .gallery-scroll {
-    background-color: rgba(153, 148, 148, 0.5);
+    background-color: rgba(153, 148, 148, 0.2);
     position: absolute;
     height: $img-height;
-    padding: 5px;
+    padding: 7px;
     display: flex;
     align-items: center;
     font-weight: bolder;
@@ -1754,20 +1754,20 @@ ol {
     &.gs-left {
       top: 0;
       left: 0;
-
-      .gs-symbol-bg::before {
+      .gs-symbol::before {
         content: '<'
       }
     }
     &.gs-right {
       top: 0;
       right: 0;
-      .gs-symbol-bg::before {
+      .gs-symbol::before {
         content: '>'
       }
     }
 
-    .gs-symbol-bg {
+    .gs-symbol {
+      pointer-events: none;
       background-color: rgba(238, 238, 238, 0.8);
       height: 1em;
       width: 1em;
@@ -1776,10 +1776,6 @@ ol {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &::before {
-        content: '<'
-      }
     }
   }
 

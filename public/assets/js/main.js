@@ -69,55 +69,79 @@
 
 })(jQuery);
 
-// need to add some logic for resizing, since atm, things are set once at the beginning,
-// and if the window wasn't overflowing at the beginning, then it won't horizontally scroll or anything after a resize
-// also rewrite to use the container so that it's easier to manipulate the left and right arrows
 const imageGalleryContainers = [...document.getElementsByClassName('image-gallery-container')]
 imageGalleryContainers.forEach(imageGallery => {
 	const gallery = imageGallery.querySelector('.image-gallery');
+	let scrollable = gallery.scrollWidth - gallery.clientWidth;
+
+	// enables horizontal scrolling on horizontally scrollable image galleries
+	gallery.addEventListener('wheel', galleryScroll)
+
+	// vars for clicking to navigate photos
 	const leftScroll = imageGallery.querySelector('.gs-left');
 	const rightScroll = imageGallery.querySelector('.gs-right');
-	
+	leftScroll.addEventListener('click', galleryButtonScroll)
+	rightScroll.addEventListener('click', galleryButtonScroll)
+
+	// for storing an array of widths for the scrollbuttons to traverse
+	let imageWidths;
+
 	handleOverflow();
 	window.addEventListener('resize', handleOverflow)
 
-
-
 	//do stuff with galleries that have overflow
 	function handleOverflow() {
+		scrollable = gallery.scrollWidth - gallery.clientWidth
 		if (gallery.scrollWidth > gallery.clientWidth) {
-			// enables horizontal scrolling on horizontally scrollable image galleries
-			gallery.addEventListener('wheel', galleryScroll)
+			// queue of images for the left/right scroll buttons to go through
+			// turn it into a doubly linked list with just widths to scroll to/from 
+			const imageQueue = [...gallery.getElementsByClassName('gallery-image')]
+			let imageWidthAcc = 0;
+			imageWidths = imageQueue.map(image => {
+				imageWidthAcc += image.clientWidth;
+				return imageWidthAcc
+			})
+
+			// enable left/right scroll buttons
 			leftScroll.classList.remove('hidden')
 			rightScroll.classList.remove('hidden')
-			// need to add left/right buttons for navigating photos when they're in a scrollable container
-			// console.log('left', Array.from(leftScroll))
+
 		} else {
 			leftScroll.classList.add('hidden')
 			rightScroll.classList.add('hidden')
-			gallery.removeEventListener('wheel', galleryScroll)	// doesn't seem to do anything. need to figure out why
-		}
-
-		function galleryScroll(e) {
-			const scrollable = gallery.scrollWidth - gallery.clientWidth;
-			//allow scrolling up/down again once left/rightmost picture is reached 
-			if (gallery.scrollLeft <= 0 && e.deltaY < 0) return;
-			if (gallery.scrollLeft >= scrollable && e.deltaY > 0) return;
-			e.preventDefault();
-			if (e.deltaY !== 0) {
-				gallery.scrollLeft += e.deltaY;
-			} else if (e.deltaX !== 0) {
-				gallery.scrollLeft += e.deltaX;
-			}
 		}
 	}
 
+	function galleryScroll(e) {
+		//allow scrolling up/down again once left/rightmost picture is reached 
+		if (gallery.scrollLeft <= 0 && e.deltaY < 0) return;
+		if (gallery.scrollLeft >= scrollable && e.deltaY > 0) return;
+		e.preventDefault();
+		if (e.deltaY !== 0) {
+			gallery.scrollLeft += e.deltaY;
+		}
+	}
+	function galleryButtonScroll(e) {
+		let imageIndex = imageWidths.findIndex(width => width >= gallery.scrollLeft)
+		console.log(imageIndex)
+		if (e.target.classList.contains('gs-left')) {
+			if (imageIndex > 0) {
+				gallery.scrollTo(imageWidths[imageIndex - 1], 0)
+			}
+			else {
+				gallery.scrollTo(0, 0)
+			}
+		} else if (e.target.classList.contains('gs-right')) {
+			gallery.scrollTo(imageWidths[imageIndex]+5, 0)
+		}
+		console.log('button click', e.target.classList.contains('gs-left'))
+	}
 
 	// enlarge images on click
 	const images = gallery.getElementsByClassName('gallery-image');
 	Array.from(images).forEach(image => {
 		image.addEventListener('click', (e) => {
-			console.log(e.target)
+			console.log('picture', e.target)
 		})
 	})
 })

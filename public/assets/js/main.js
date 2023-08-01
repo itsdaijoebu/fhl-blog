@@ -69,28 +69,49 @@
 
 })(jQuery);
 
-// enables horizontal scrolling on horizontally scrollable image galleries
-const imageGalleries = document.getElementsByClassName('image-gallery');
-Array.from(imageGalleries).forEach(gallery => {
-	if(gallery.scrollWidth > gallery.clientWidth) {
-		console.log(gallery, 'overflows')
-	}
-	gallery.addEventListener('wheel', (e) => {
-		const scrollable = gallery.scrollWidth - gallery.clientWidth;
-		if (gallery.scrollLeft <= 0 && e.deltaY < 0) return;
-		if (gallery.scrollLeft >= scrollable && e.deltaY > 0) return;
-		e.preventDefault();
-		if (e.deltaY !== 0) {
-			gallery.scrollLeft += e.deltaY;
-		} else if (e.deltaX !== 0) {
-			gallery.scrollLeft += e.deltaX;
-		}
-	})
+// need to add some logic for resizing, since atm, things are set once at the beginning,
+// and if the window wasn't overflowing at the beginning, then it won't horizontally scroll or anything after a resize
+// also rewrite to use the container so that it's easier to manipulate the left and right arrows
+const imageGalleryContainers = [...document.getElementsByClassName('image-gallery-container')]
+imageGalleryContainers.forEach(imageGallery => {
+	const gallery = imageGallery.querySelector('.image-gallery');
+	const leftScroll = imageGallery.querySelector('.gs-left');
+	const rightScroll = imageGallery.querySelector('.gs-right');
+	
+	handleOverflow();
+	window.addEventListener('resize', handleOverflow)
 
-	// need to add left/right buttons for navigating photos when they're in a scrollable container
-	gallery.addEventListener('click', (e) => {
-		// console.log(e.currentTarget.scrollWidth, e.currentTarget.clientWidth, e.clientX)
-	})
+
+
+	//do stuff with galleries that have overflow
+	function handleOverflow() {
+		if (gallery.scrollWidth > gallery.clientWidth) {
+			// enables horizontal scrolling on horizontally scrollable image galleries
+			gallery.addEventListener('wheel', galleryScroll)
+			leftScroll.classList.remove('hidden')
+			rightScroll.classList.remove('hidden')
+			// need to add left/right buttons for navigating photos when they're in a scrollable container
+			// console.log('left', Array.from(leftScroll))
+		} else {
+			leftScroll.classList.add('hidden')
+			rightScroll.classList.add('hidden')
+			gallery.removeEventListener('wheel', galleryScroll)	// doesn't seem to do anything. need to figure out why
+		}
+
+		function galleryScroll(e) {
+			const scrollable = gallery.scrollWidth - gallery.clientWidth;
+			//allow scrolling up/down again once left/rightmost picture is reached 
+			if (gallery.scrollLeft <= 0 && e.deltaY < 0) return;
+			if (gallery.scrollLeft >= scrollable && e.deltaY > 0) return;
+			e.preventDefault();
+			if (e.deltaY !== 0) {
+				gallery.scrollLeft += e.deltaY;
+			} else if (e.deltaX !== 0) {
+				gallery.scrollLeft += e.deltaX;
+			}
+		}
+	}
+
 
 	// enlarge images on click
 	const images = gallery.getElementsByClassName('gallery-image');

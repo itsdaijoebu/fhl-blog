@@ -1,11 +1,11 @@
-<section class="image-gallery-container">
-    <div class="gallery-scroll gs-left hidden"><span class="gs-symbol"></span></div>
-    <ul class="image-gallery">
+<section class="image-gallery-container gallery-component">
+    <div class="gallery-scroll gs-left gallery-component hidden"><span class="gs-symbol"></span></div>
+    <ul class="image-gallery gallery-component">
         <% for(image of images) {%>
-            <li>
-                <img class="gallery-image" src=<%=image%>>
+            <li class="gallery-component">
+                <img class="gallery-image gallery-component" src=<%=image%>>
             </li>
         <%}%>
         </ul>
-    <div class="gallery-scroll gs-right hidden"><span class="gs-symbol"></span></div>
+    <div class="gallery-scroll gs-right gallery-component hidden"><span class="gs-symbol"></span></div>
 </section>

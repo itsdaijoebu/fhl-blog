@@ -141,7 +141,16 @@ imageGalleryContainers.forEach(imageGallery => {
 	const images = gallery.getElementsByClassName('gallery-image');
 	Array.from(images).forEach(image => {
 		image.addEventListener('click', (e) => {
-			console.log('picture', e.target)
+			imageGallery.classList.add('enlarge')
+			handleOverflow();
+			document.addEventListener('mousedown', cancelEnlarge)
+			function cancelEnlarge(e) {
+				console.log('remove', e.target)
+				if(e.target.classList.contains('gallery-component')) return
+
+				imageGallery.classList.remove('enlarge')
+				document.removeEventListener('mousedown', cancelEnlarge)
+			}
 		})
 	})
 })

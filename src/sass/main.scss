@@ -1737,14 +1737,20 @@ ol {
 .image-gallery-container {
   $img-height: 30vh;
 
+  height: $img-height;
   display: flex;
   max-width: fit-content;
   position: relative;
+  user-select: none;  //prevent highlight of gallery when double-clicking on certain areas
+
+  &.enlarge {
+    height: $img-height*1.75;
+  }
 
   .gallery-scroll {
     background-color: rgba(153, 148, 148, 0.2);
     position: absolute;
-    height: $img-height;
+    height: inherit;
     padding: 7px;
     display: flex;
     align-items: center;
@@ -1754,13 +1760,16 @@ ol {
     &.gs-left {
       top: 0;
       left: 0;
+
       .gs-symbol::before {
         content: '<'
       }
     }
+
     &.gs-right {
       top: 0;
       right: 0;
+
       .gs-symbol::before {
         content: '>'
       }
@@ -1784,6 +1793,7 @@ ol {
     margin: 0;
     display: block;
     width: 100%;
+    height: inherit;
     overflow-y: hidden;
     overflow-x: auto;
     white-space: nowrap;
@@ -1809,11 +1819,14 @@ ol {
     img {
       display: block;
       margin: 0;
-      height: $img-height;
+      height: inherit;
     }
 
-    li:first-of-type {
-      padding-left: 0;
+    li {
+      height: inherit;
+      &:first-of-type {
+        padding-left: 0;
+      }
     }
   }
 }
@@ -1834,6 +1847,7 @@ ol {
 .hidden {
   visibility: hidden;
 }
+
 .none {
   display: none;
 }

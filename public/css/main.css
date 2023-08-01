@@ -2445,14 +2445,19 @@ ol li {
   }
 }
 .image-gallery-container {
+  height: 30vh;
   display: flex;
   max-width: fit-content;
   position: relative;
+  user-select: none;
+}
+.image-gallery-container.enlarge {
+  height: 52.5vh;
 }
 .image-gallery-container .gallery-scroll {
   background-color: rgba(153, 148, 148, 0.2);
   position: absolute;
-  height: 30vh;
+  height: inherit;
   padding: 7px;
   display: flex;
   align-items: center;
@@ -2489,6 +2494,7 @@ ol li {
   margin: 0;
   display: block;
   width: 100%;
+  height: inherit;
   overflow-y: hidden;
   overflow-x: auto;
   white-space: nowrap;
@@ -2508,7 +2514,10 @@ ol li {
 .image-gallery-container .image-gallery img {
   display: block;
   margin: 0;
-  height: 30vh;
+  height: inherit;
+}
+.image-gallery-container .image-gallery li {
+  height: inherit;
 }
 .image-gallery-container .image-gallery li:first-of-type {
   padding-left: 0;

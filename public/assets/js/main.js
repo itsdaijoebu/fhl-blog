@@ -121,6 +121,7 @@ imageGalleryContainers.forEach(imageGallery => {
 			gallery.scrollLeft += e.deltaY;
 		}
 	}
+	// functionality for left/right buttons on button galleries with overflow
 	function galleryButtonScroll(e) {
 		let imageIndex = imageWidths.findIndex(width => width >= gallery.scrollLeft)
 		console.log(imageIndex)
